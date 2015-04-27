@@ -103,7 +103,9 @@ function($scope, posts){
   };
 
   $scope.deletePost = function(post){
-		posts.deletePost(post);
+		posts.deletePost(post).success(function(post) {
+			posts.getAll();
+    });
   }
 	
   $scope.incrementUpvotes = function(post) {
