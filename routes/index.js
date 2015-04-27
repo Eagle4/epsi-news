@@ -83,7 +83,6 @@ router.delete('/posts/:post', function(req, res, next) {
   });
 });
 
-
 // create a new comment
 router.post('/posts/:post/comments', function(req, res, next) {
   var comment = new Comment(req.body);
@@ -112,15 +111,15 @@ router.put('/posts/:post/comments/:comment/upvote', function(req, res, next) {
   });
 });
 
-
-/* DELETE a comment /todos/:id */
-//return $http.delete('/posts/'+post._id+'/comments/'+comment._id);
-/*router.delete('/posts/:post') {
+/*
+/* DELETE a comment /todos/:id *
+///return $http.delete('/posts/'+post._id+'/comments/'+comment._id);
+router.delete('/posts/:post/comments/:comment') {
   Post.findByIdAndRemove(req.params.post, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
-*/
 
+*/
 module.exports = router;

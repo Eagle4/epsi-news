@@ -1,12 +1,11 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
 a {
   color: #00B7FF;
 }
 
 input.form-control{
 	outline-color: #d9534f;
+}
+
+.postDescription {
+    margin: 20px 0;   
 }
