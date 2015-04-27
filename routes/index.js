@@ -75,13 +75,14 @@ router.put('/posts/:post/upvote', function(req, res, next) {
 });
 
 //delete a post
+
 router.delete('/posts/:post', function(req, res, next) {
   Post.findByIdAndRemove(req.params.post, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
-t
+
 
 // create a new comment
 router.post('/posts/:post/comments', function(req, res, next) {
@@ -114,12 +115,12 @@ router.put('/posts/:post/comments/:comment/upvote', function(req, res, next) {
 
 /* DELETE a comment /todos/:id */
 //return $http.delete('/posts/'+post._id+'/comments/'+comment._id);
-router.delete('/posts/:post') {
+/*router.delete('/posts/:post') {
   Post.findByIdAndRemove(req.params.post, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
-
+*/
 
 module.exports = router;
