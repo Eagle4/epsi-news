@@ -12,7 +12,8 @@ function($scope, posts){
 	  imgLink: $scope.imgLink,
       title: $scope.title,
       link: $scope.link,
-	  description: $scope.description
+	  description: $scope.description,
+      date: new Date()
     });
 	
     $scope.imgLink = '';

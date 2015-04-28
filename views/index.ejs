@@ -1,158 +1,134 @@
 <html>
+
 <head>
-  <title>EPSI News</title>
-
-
-  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
-  
-  <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>EPSI News</title>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
-<body ng-app="flapperNews">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <ui-view></ui-view>
-    </div>
-  </div>
-<script type="text/ng-template" id="/home.html">
-    <div class="page-header">
-        <h1>EPSI News</h1>
-    </div>
 
-    <div ng-repeat="post in posts | orderBy:'-upvotes'">
-        <div class="row">
-            <div class="col-md-2">
-            <img src={{post.imgLink}} alt="Aucune image" width="100" height="100" />
-            </div>
-            <div class="col-md-10">
-            <h1><a ng-show="post.link" href="{{post.link}}">
+<body ng-app="flapperNews">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <ui-view></ui-view>
+        </div>
+    </div>
+    <script type="text/ng-template" id="/home.html">
+        <div class="page-header">
+            <h1>EPSI News</h1>
+        </div>
+
+        <div ng-repeat="post in posts | orderBy:'date'">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src={{post.imgLink}} alt="Aucune image" width="100" height="100" />
+                </div>
+                <div class="col-md-10">
+                    <h1><a ng-show="post.link" href="{{post.link}}">
           {{post.title}}:
         </a>
         <span ng-hide="post.link">
           {{post.title}}
         </span>
       </h1>
-      <hr/>
-      </div>
-        </div>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-10 postDescription">
-	       <p>{{post.description}}</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6"></div>
-        <div class="col-md-1">
-         <span class="glyphicon glyphicon-thumbs-up test" ng-click="incrementUpvotes(post)"></span>
-         {{post.upvotes}}
-         </div>
-         <div class="col-md-2">
-            <span>
+                    <hr/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-10 postDescription">
+                    <p>{{post.description}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">{{post.date | date:'EEEE, MMMM d, y'}}</div>
+                <div class="col-md-1">
+                    <span class="glyphicon glyphicon-thumbs-up test" ng-click="incrementUpvotes(post)"></span> {{post.upvotes}}
+                </div>
+                <div class="col-md-2">
+                    <span>
                 <a href="#/posts/{{post._id}}">Comments</a>
             </span>
-        </div>
-        <div class="col-md-3">
-		      <input type="submit" value="Supprimer" class="btn btn-sm btn-primary" ng-click="deletePost(post)">
-        </div>
-    </div>
-    <hr/>
-</div>
-    <form ng-submit="addPost()"
-	  name="formulaire"
-      style="margin-top:30px;">
-      <h3>Ajouter un nouveau post</h3>
-	  
-	  <div class="form-group">
-        <input type="text"
-        class="form-control"
-        placeholder="Lien image de présentation"
-        ng-model="imgLink"></input>
-      </div>
-	  
-      <div class="form-group">
-        <input type="text"
-        class="form-control"
-        placeholder="Titre"
-        ng-model="title"
-		required=""></input>
-      </div>
-	  
-      <div class="form-group">
-        <input type="text"
-        class="form-control"
-        placeholder="Lien vers l'article"
-        ng-model="link"></input>
-      </div>
-	  
-	  <div class="form-group">
-        <input type="text"
-        class="form-control"
-        placeholder="Description courte de l'article"
-        ng-model="description"
-		required ng-maxlength="80"></input>
-        <span>{{description.length}}/80</span>
-      </div>
-      <button type="submit" class="btn btn-primary">Post</button>
-    </form>
-	<!--<button data-ng-if = "formulaire.$invalid" class="btn btn-sm btn-danger">Post</button>-->
-  </script>
-
-  <script type="text/ng-template" id="/posts.html">
-    <div class="page-header">
-        
-        <div class="row">
-            <div class="col-md-2">
-            <img src={{post.imgLink}} alt="Aucune image" width="100" height="100" />
+                </div>
+                <div class="col-md-3">
+                    <input type="submit" value="Supprimer" class="btn btn-sm btn-primary" ng-click="deletePost(post)">
+                </div>
             </div>
-            <div class="col-md-10">
-            <h1><a ng-show="post.link" href="{{post.link}}">
+            <hr/>
+        </div>
+        <form ng-submit="addPost()" name="formulaire" style="margin-top:30px;">
+            <h3>Ajouter un nouveau post</h3>
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Lien image de présentation" ng-model="imgLink"></input>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Titre" ng-model="title" required=""></input>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Lien vers l'article" ng-model="link"></input>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Description courte de l'article" ng-model="description" required ng-maxlength="80"></input>
+                <span>{{description.length}}/80</span>
+            </div>
+            <button type="submit" class="btn btn-primary">Post</button>
+        </form>
+        <!--<button data-ng-if = "formulaire.$invalid" class="btn btn-sm btn-danger">Post</button>-->
+    </script>
+
+    <script type="text/ng-template" id="/posts.html">
+        <div class="page-header">
+
+            <div class="row">
+                <div class="col-md-2">
+                    <img src={{post.imgLink}} alt="Aucune image" width="100" height="100" />
+                </div>
+                <div class="col-md-10">
+                    <h1><a ng-show="post.link" href="{{post.link}}">
           {{post.title}}:
         </a>
         <span ng-hide="post.link">
           {{post.title}}
         </span>
       </h1>
-      <hr/>
-      </div>
-        <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-10 postDescription">
-	       <p>{{post.description}}</p>
-        </div>
-    </div>
-    
-    </div>
-    <hr/>
-    <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
-      <span class="glyphicon glyphicon-thumbs-up"
-        ng-click="incrementUpvotes(comment)"></span>
-      {{comment.upvotes}} - by {{comment.author}}
-      <span style="font-size:20px; margin-left:10px;">
+                    <hr/>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10 postDescription">
+                        <p>{{post.description}}</p>
+                    </div>
+                </div>
+
+            </div>
+            <hr/>
+            <div ng-repeat="comment in post.comments | orderBy:'date'">
+                <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span> {{comment.upvotes}} - by {{comment.author}}
+                <span style="font-size:20px; margin-left:10px;">
         {{comment.body}}
       </span>
-	  <span>
+                <span>
 		<input type="submit" value="Supprimer" class="btn btn-sm btn-info" ng-click="deleteComment(comment)">
 	  </span>
-    </div>
-    <form ng-submit="addComment()"
-      style="margin-top:30px;">
-      <h3>Ajouter un commentaire</h3>
+            </div>
+            <form ng-submit="addComment()" style="margin-top:30px;">
+                <h3>Ajouter un commentaire</h3>
 
-      <div class="form-group">
-        <input type="text"
-        class="form-control"
-        placeholder="Comment"
-        ng-model="body"></input>
-      </div>
-      <button type="submit" class="btn btn-primary">Post</button>
-    </form>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
+                </div>
+                <button type="submit" class="btn btn-primary">Post</button>
+            </form>
 
-  </script>
+    </script>
 
-<script src="/javascripts/angularApp.js"></script>
-<script src="/javascripts/controller.js"></script>
+    <script src="/javascripts/angularApp.js"></script>
+    <script src="/javascripts/controller.js"></script>
 </body>
+
 </html>
