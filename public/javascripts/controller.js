@@ -42,13 +42,22 @@ function($scope, posts, post){
   $scope.post = post;
 
   $scope.addComment = function(){
-    if($scope.body === '') { return; }
-    posts.addComment(post._id, {
-      body: $scope.body,
-      author: 'user',
-    }).success(function(comment) {
-      $scope.post.comments.push(comment);
-    });
+    var myAuthor = '';
+    if ($scope.author !== undefined && $scope.author !== ''){
+        myAuthor = $scope.author;
+    }
+    else {
+        myAuthor = 'anonymous';
+    }    
+    if($scope.body !== undefined && $scope.body !== '') {
+        console.log($scope.body);
+        posts.addComment(post._id, {
+          body: $scope.body,
+          author: myAuthor,
+        }).success(function(comment) {
+          $scope.post.comments.push(comment);
+        });    
+    }
     $scope.body = '';
   };
 	$scope.deleteComment = function(comment){

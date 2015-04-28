@@ -4,6 +4,11 @@ a {
 
 input.form-control{
 	outline-color: #d9534f;
+    margin: 5px 0;
+}
+
+.input-group {
+    margin: 10px auto;
 }
 
 .postDescription {
@@ -12,4 +17,24 @@ input.form-control{
 
 .row {
     margin: 0;
+}
+
+.btn {
+    margin: 5px;
+}
+
+.page-header {
+    border: 0;
+}
+
+.floatL {
+    float: left;
+}
+
+.floatR {
+    float: right;
+}
+
+.comment {
+    min-height: 50px;
 }

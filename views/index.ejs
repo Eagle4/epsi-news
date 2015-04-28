@@ -18,8 +18,10 @@
         <div class="page-header">
             <h1>EPSI News</h1>
         </div>
-
-        <div ng-repeat="post in posts | orderBy:'date':'reverse'">
+        <div class="input-group input-group-lg">
+          <input type="text" class="form-control" placeholder="Rechercher un article" aria-describedby="sizing-addon1" ng-model="search">
+        </div>
+        <div ng-repeat="post in posts | filter:{title : search} | orderBy:'date':'reverse'">
             <div class="row">
                 <div class="col-md-2">
                     <img src={{post.imgLink}} alt="Aucune image" width="100" height="100" />
@@ -107,23 +109,25 @@
 
             </div>
             <hr/>
-            <div ng-repeat="comment in post.comments | orderBy:'date'">
+            <div ng-repeat="comment in post.comments | orderBy:'date'" class="comment">
                 <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span> {{comment.upvotes}} - by {{comment.author}}
                 <span style="font-size:20px; margin-left:10px;">
         {{comment.body}}
       </span>
                 <span>
-		<input type="submit" value="Supprimer" class="btn btn-sm btn-info" ng-click="deleteComment(comment)">
+		<input type="submit" value="Supprimer" class="btn floatR btn-sm btn-info" ng-click="deleteComment(comment)">
 	  </span>
             </div>
             <form ng-submit="addComment()" style="margin-top:30px;">
                 <h3>Ajouter un commentaire</h3>
 
                 <div class="form-group">
+                    <input type="text" class="form-control" placeholder="pseudo" ng-model="author"></input>
                     <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
                 </div>
-                <button type="submit" class="btn btn-primary">Post</button>
+                <button type="submit" class=" floatL btn btn-primary">Post</button>
             </form>
+            <a href="/" class="btn btn-primary floatL">Retour</a>
 
     </script>
 
