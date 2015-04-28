@@ -53,19 +53,20 @@ app.factory('posts', ['$http', function($http){
     });
   };
   o.deleteComment = function(post,comment){
-
-	return $http.delete('/posts/'+post._id+'/comments/'+comment._id).success(function(comment){
-    //o.posts.pop(data);
+	return $http.delete('/posts/'+post._id+'/comments/'+comment._id).success(function(post){
+    o.posts.pop(post);
     });
   };
 
   o.deletePost = function(post){
 	return $http.delete('/posts/'+post._id).success(function(data){
-	alert('suppresion d\'un post');
      o.posts.pop(data);
     });
   };
-
+    /*
+     o.deletePost = function(post){
+        return $http.delete('/posts/'+post._id+'/remove/')
+    };*/
   o.upvote = function(post) {
     return $http.put('/posts/' + post._id + '/upvote')
       .success(function(data){
@@ -83,6 +84,5 @@ app.factory('posts', ['$http', function($http){
         comment.upvotes += 1;
       });
   };
-  
   return o;
 }]);

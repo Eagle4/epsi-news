@@ -53,10 +53,6 @@ function($scope, posts, post){
   };
 	$scope.deleteComment = function(comment){
 		posts.deleteComment(post, comment);
-		console.log('$scope.post',$scope.post);
-		console.log('$scope.post.comments',$scope.post.comments);
-		$scope.post.comments.remove(comment);
-		
 	}
   $scope.incrementUpvotes = function(comment){
     posts.upvoteComment(post, comment);
