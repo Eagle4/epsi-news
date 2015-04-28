@@ -8,7 +8,7 @@ function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
       url: '/home',
-      templateUrl: '/home.html',
+      templateUrl: 'template/home.html',
       controller: 'MainCtrl',
       resolve: {
         postPromise: ['posts', function(posts){
@@ -18,7 +18,7 @@ function($stateProvider, $urlRouterProvider) {
     })
     .state('posts', {
       url: '/posts/{id}',
-      templateUrl: '/posts.html',
+      templateUrl: 'template/posts.html',
       controller: 'PostsCtrl',
       resolve: {
         post: ['$stateParams', 'posts', function($stateParams, posts) {

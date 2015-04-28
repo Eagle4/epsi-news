@@ -1,0 +1,42 @@
+<div class="page-header">
+
+            <div class="row">
+                <div class="col-md-2">
+                    <img src={{post.imgLink}} alt="Aucune image" width="100" height="100" />
+                </div>
+                <div class="col-md-10">
+                    <h1><a ng-show="post.link" href="{{post.link}}">
+          {{post.title}}:
+        </a>
+        <span ng-hide="post.link">
+          {{post.title}}
+        </span>
+      </h1>
+                    <hr/>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10 postDescription">
+                        <p>{{post.description}}</p>
+                    </div>
+                </div>
+
+            </div>
+            <hr/>
+            <div ng-repeat="comment in post.comments | orderBy:'date'">
+                <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span> {{comment.upvotes}} - by {{comment.author}}
+                <span style="font-size:20px; margin-left:10px;">
+        {{comment.body}}
+      </span>
+                <span>
+		<input type="submit" value="Supprimer" class="btn btn-sm btn-info" ng-click="deleteComment(comment)">
+	  </span>
+            </div>
+            <form ng-submit="addComment()" style="margin-top:30px;">
+                <h3>Ajouter un commentaire</h3>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
+                </div>
+                <button type="submit" class="btn btn-primary">Post</button>
+            </form>
