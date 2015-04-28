@@ -23,20 +23,22 @@
 
             </div>
             <hr/>
-            <div ng-repeat="comment in post.comments | orderBy:'date'">
+            <div class="comment" ng-repeat="comment in post.comments | orderBy:'date'">
                 <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span> {{comment.upvotes}} - by {{comment.author}}
                 <span style="font-size:20px; margin-left:10px;">
         {{comment.body}}
       </span>
                 <span>
-		<input type="submit" value="Supprimer" class="btn btn-sm btn-info" ng-click="deleteComment(comment)">
+		<input type="submit" value="Supprimer" class="floatR btn btn-sm btn-info" ng-click="deleteComment(comment)">
 	  </span>
             </div>
             <form ng-submit="addComment()" style="margin-top:30px;">
                 <h3>Ajouter un commentaire</h3>
 
                 <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Pseudo" ng-model="author"></input>
                     <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
                 </div>
-                <button type="submit" class="btn btn-primary">Post</button>
+                <button type="submit" class="floatL btn btn-primary">Post</button>
             </form>
+                <a href="/" class="btn btn-primary floatL">Retour</a>

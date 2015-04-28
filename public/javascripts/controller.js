@@ -42,15 +42,14 @@ function($scope, posts, post){
   $scope.post = post;
 
   $scope.addComment = function(){
-    var myAuthor = '';
-    if ($scope.author !== undefined && $scope.author !== ''){
+      var myAuthor = '';
+    if($scope.author !== '' && $scope.author !== undefined) {
         myAuthor = $scope.author;
     }
-    else {
+      else {
         myAuthor = 'anonymous';
-    }    
-    if($scope.body !== undefined && $scope.body !== '') {
-        console.log($scope.body);
+      }
+    if($scope.body !== '' && $scope.body !== undefined) {
         posts.addComment(post._id, {
           body: $scope.body,
           author: myAuthor,
