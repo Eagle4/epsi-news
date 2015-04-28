@@ -75,7 +75,6 @@ router.put('/posts/:post/upvote', function(req, res, next) {
 });
 
 //delete a post
-
 router.delete('/posts/:post', function(req, res, next) {
   Post.findByIdAndRemove(req.params.post, function (err, post) {
     if (err) return next(err);
@@ -112,15 +111,25 @@ router.put('/posts/:post/comments/:comment/upvote', function(req, res, next) {
   });
 });
 
-/*
-/* DELETE a comment /todos/:id *
-///return $http.delete('/posts/'+post._id+'/comments/'+comment._id);
-router.delete('/posts/:post/comments/:comment') {
+// DELETE a comment in collection comment
+router.delete('/posts/:post/comments/:comment',function(req, res, next) {
+  Comment.findByIdAndRemove(req.params.comment, function (err, post) {
+    if (err) return next(err);
+  });
+});
+router.delete('/posts/:post/comments/:comment',function(req, res, next) {
+  Post.findByIdAndRemove(req.params.post.comment, function (err, post) {
+    if (err) return next(err);
+  });
+});
+
+
+router.delete('/posts/:post', function(req, res, next) {
   Post.findByIdAndRemove(req.params.post, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-*/
+
 module.exports = router;
