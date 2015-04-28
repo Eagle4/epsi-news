@@ -11,10 +11,6 @@ input.form-control{
     margin: 10px auto;
 }
 
-.postDescription {
-    margin: 20px 0;   
-}
-
 .row {
     margin: 0;
 }
@@ -37,4 +33,9 @@ input.form-control{
 
 .comment {
     min-height: 50px;
+} 
+    
+
+.postDescription {
+    margin: 20px 0;   
 }
