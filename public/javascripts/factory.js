@@ -22,8 +22,7 @@ app.factory('posts', ['$http', function($http){
     });
   };
   o.deleteComment = function(post,comment){
-	return $http.delete('/posts/'+post._id+'/comments/'+comment._id).success(function(post){
-    o.posts.pop(post);
+	return $http.delete('/posts/'+post._id+'/comments/'+comment._id).success(function(data){
     });
   };
 

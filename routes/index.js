@@ -101,9 +101,21 @@ router.post('/posts/:post/comments', function(req, res, next) {
   });
 });
 
+//delete comment 
+router.delete('/posts/:post/comments/:comment', function(req, res, next) {
+  //in Comments document
+  Comment.findByIdAndRemove(req.params.comment, function (err, comment) {
+    if (err) return next(err);
+    res.json(comment);
+  });
+  // in Posts document
+  Post.update( { _id: req.params.post }, { $pull: { comments: req.params.comment }}, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
 
 // upvote a comment
-//return $http.put('/posts/' + post._id + '/comments/'+ comment._id + '/upvote')
 router.put('/posts/:post/comments/:comment/upvote', function(req, res, next) {
   req.comment.upvote(function(err, comment){
     if (err) { return next(err); }
@@ -112,15 +124,5 @@ router.put('/posts/:post/comments/:comment/upvote', function(req, res, next) {
   });
 });
 
-/*
-/* DELETE a comment /todos/:id *
-///return $http.delete('/posts/'+post._id+'/comments/'+comment._id);
-router.delete('/posts/:post/comments/:comment') {
-  Post.findByIdAndRemove(req.params.post, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
-});
 
-*/
 module.exports = router;

@@ -61,6 +61,15 @@ function($scope, posts, post){
   };
 	$scope.deleteComment = function(comment){
 		posts.deleteComment(post, comment);
+		alert('êtes vous sur de vouloir supprimer ce commentaire');
+		function refreshScope(objComment){
+			for(index in $scope.post.comments){
+				if (objComment === $scope.post.comments[index]){
+					$scope.post.comments.splice(index,1)
+				}
+			}
+		}
+		refreshScope(comment);
 	}
   $scope.incrementUpvotes = function(comment){
     posts.upvoteComment(post, comment);
