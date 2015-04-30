@@ -1,11 +1,18 @@
 <div class="page-header">
-            <h1>EPSI News</h1>
+<div class="row">
+<div class="col-md-2">
+<img src="http://www.google.fr/url?source=imglanding&ct=img&q=http://www.epsi-ligue.com/images/96-epsi.png&sa=X&ei=VgBCVcXFMIaVaqm0gKgJ&ved=0CAkQ8wc&usg=AFQjCNEB_MvGHXWT0PsIPpnZRWGkkDsvEA" alt="Aucune image" width="130" height="130" />
+</div>
+            <div class="col-md-10 header-title">
+			<h1>EPSI News</h1>
+</div>
+</div>
         </div>
         <input class="form-control" placeholder="rechercher un article" type="text" ng-model="search" />
         <div ng-repeat="post in posts | filter: {title : search} |orderBy:'date':'reverse'">
             <div class="row">
                 <div class="col-md-2">
-                    <img src={{post.imgLink}} alt="Aucune image" width="100" height="100" />
+                    <img src={{post.imgLink}} alt="Aucune image" width="130" height="130" />
                 </div>
                 <div class="col-md-10">
                     <h1><a ng-show="post.link" href="{{post.link}}">
