@@ -103,15 +103,13 @@ router.post('/posts/:post/comments', function(req, res, next) {
 
 //delete comment 
 router.delete('/posts/:post/comments/:comment', function(req, res, next) {
-  //in Comments document
+  //in document Comments 
   Comment.findByIdAndRemove(req.params.comment, function (err, comment) {
     if (err) return next(err);
-    res.json(comment);
   });
-  // in Posts document
+  // in document Posts 
   Post.update( { _id: req.params.post }, { $pull: { comments: req.params.comment }}, function (err, post) {
     if (err) return next(err);
-    res.json(post);
   });
 });
 
